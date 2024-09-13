@@ -31,14 +31,20 @@ export const SceneComponent = () => {
   return (
     <>
       <LightComponent />
-      <EarthComponent position={[0, -2, 0]} />
-      {content.map((data, index) => (
-        <WeatherComponent
-          key={index}
-          position={[-1 + index * 0.5, 0, 0]}
-          weather={data.weatherData?.weather[0]?.main?.toLowerCase()}
-        />
-      ))}
+      <EarthComponent />
+      {content.map((data, index) => {
+        const angle = (index / (content.length - 1)) * Math.PI;
+        const radius = 2;
+        const x = radius * Math.cos(angle);
+        const y = radius * Math.sin(angle);
+        return (
+          <WeatherComponent
+            key={index}
+            position={[x, y - 1.5, 0]}
+            weather={data.weatherData?.weather[0]?.main?.toLowerCase()}
+          />
+        );
+      })}
     </>
   );
 };
