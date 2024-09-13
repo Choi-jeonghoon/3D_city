@@ -32,15 +32,13 @@ export const SceneComponent = () => {
     <>
       <LightComponent />
       <EarthComponent position={[0, -2, 0]} />
-      {content?.map((key, index) => {
-        return (
-          <WeatherComponent
-            key={index + "KEY"}
-            position={[-1 + index * 0.5, 0, 0]}
-            weather={key.weatherData?.weather[0]?.main?.toLowerCase()}
-          />
-        );
-      })}
+      {content.map((data, index) => (
+        <WeatherComponent
+          key={index}
+          position={[-1 + index * 0.5, 0, 0]}
+          weather={data.weatherData?.weather[0]?.main?.toLowerCase()}
+        />
+      ))}
     </>
   );
 };
