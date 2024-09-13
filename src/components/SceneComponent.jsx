@@ -34,30 +34,15 @@ export const SceneComponent = () => {
       <color attach="background" args={["rgb(67,127,340)100%"]} />
       <LightComponent />
       <EarthComponent position={[0, -2, 0]} />
-      {content.length > 0 && (
-        <>
+      {content?.map((key, index) => {
+        return (
           <WeatherComponent
-            position={[0.5, 0, 0]}
-            weather={content[0].weatherData.weather[0].main.toLowerCase()}
+            key={index + "KEY"}
+            position={[-1 + index * 0.5, 0, 0]}
+            weather={key.weatherData?.weather[0]?.main?.toLowerCase()}
           />
-          <WeatherComponent
-            position={[0, 0, 0]}
-            weather={content[1].weatherData.weather[0].main.toLowerCase()}
-          />
-          <WeatherComponent
-            position={[-0.5, 0, 0]}
-            weather={content[2].weatherData.weather[0].main.toLowerCase()}
-          />
-          <WeatherComponent
-            position={[-1, 0, 0]}
-            weather={content[3].weatherData.weather[0].main.toLowerCase()}
-          />
-          <WeatherComponent
-            position={[1, 0, 0]}
-            weather={content[4].weatherData.weather[0].main.toLowerCase()}
-          />
-        </>
-      )}
+        );
+      })}
     </Canvas>
   );
 };
