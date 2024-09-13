@@ -41,6 +41,7 @@ export const SceneComponent = () => {
           <WeatherComponent
             key={index}
             position={[x, y - 1.5, 0]}
+            rotation-y={index + 1}
             weather={data.weatherData?.weather[0]?.main?.toLowerCase()}
           />
         );
