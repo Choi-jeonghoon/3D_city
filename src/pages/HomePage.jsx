@@ -3,6 +3,7 @@ import React, { Suspense } from "react";
 import { SceneComponent } from "../components/SceneComponent";
 import CustomLoader from "../common/Loader";
 import { OrbitControls } from "@react-three/drei";
+import { Outlet } from "react-router-dom";
 
 function HomePage() {
   return (
@@ -23,6 +24,7 @@ function HomePage() {
           minDistance={2} // 카메라가 이동할 수 있는 최소 거리
         />
       </Canvas>
+      <Outlet />
     </>
   );
 }
