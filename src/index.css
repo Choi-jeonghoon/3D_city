@@ -7,6 +7,14 @@ main,
   height: 100%;
   overflow: hidden;
 }
+/* 백그라운드 좀더 부드럽게 */
+body {
+  background: radial-gradient(
+    circle,
+    rgb(83, 173, 241) 0%,
+    rgb(12, 73, 187) 100%
+  );
+}
 
 .h1 {
   font-size: 28px;
