@@ -6,6 +6,8 @@ import { getCityWeather } from "../utils/weatherApi";
 import { cities } from "../utils/cities";
 import { Bounds } from "@react-three/drei";
 import { FocusWeatherComponent } from "./FocusWeatherComponent";
+import Clouds from "../common/Cloud";
+import { Starts } from "../common/Starts";
 
 export const SceneComponent = () => {
   const [content, setContent] = useState([]);
@@ -32,6 +34,8 @@ export const SceneComponent = () => {
     <>
       <LightComponent />
       <EarthComponent />
+      <Clouds />
+      <Starts />
       {/* 반응형을 위한 observe 설정 */}
       <Bounds fit clip observe margin={1}>
         <FocusWeatherComponent>

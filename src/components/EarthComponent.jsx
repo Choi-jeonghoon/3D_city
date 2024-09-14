@@ -1,7 +1,8 @@
-import { Html } from "@react-three/drei";
+import { Html, Sparkles } from "@react-three/drei";
 import { useFrame, useLoader } from "@react-three/fiber";
 import { useRef, useState } from "react";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { useBodyClass } from "../hooks/useBodyClass";
 
 export const EarthComponent = () => {
   const earthGlb = useLoader(GLTFLoader, "/models/earth.glb");
@@ -15,8 +16,17 @@ export const EarthComponent = () => {
     ref.current.rotation.y += delta * 0.1;
   });
 
+  useBodyClass(ishover, "drag");
+
   return (
     <group position={[0, -1.5, 0]}>
+      <Sparkles
+        position={[0, 0, 0]}
+        count={90}
+        scale={3}
+        size={10}
+        speed={0.7}
+      />
       <mesh
         onPointerEnter={() => setIshover(true)}
         onPointerLeave={() => setIshover(false)}
@@ -26,13 +36,12 @@ export const EarthComponent = () => {
       >
         <primitive object={earthGlb.scene} />
       </mesh>
-      {ishover && (
-        <Html center style={{ pointerEvents: "none" }}>
-          <span className="icon">
-            <img src="/icons/icon.png" alt="icon" />
-          </span>
-        </Html>
-      )}
+
+      <Html center style={{ pointerEvents: "none" }}>
+        <span className="icon">
+          <img src="/icons/icon.png" alt="icon" />
+        </span>
+      </Html>
     </group>
   );
 };

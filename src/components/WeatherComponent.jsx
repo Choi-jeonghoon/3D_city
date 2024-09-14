@@ -4,6 +4,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { motion } from "framer-motion-3d";
 import { CityNameComponent } from "./CityNameComponent";
 import { useNavigate } from "react-router-dom";
+import { useBodyClass } from "../hooks/useBodyClass";
 
 export const WeatherComponent = (props) => {
   const { position, weather, rotation, cityName } = props;
@@ -32,6 +33,7 @@ export const WeatherComponent = (props) => {
   const onClick = () => {
     navigate(`/${formatCityName(cityName)}`);
   };
+  useBodyClass(isHover, "pointer");
 
   return (
     <group position={position} rotation={rotation}>
