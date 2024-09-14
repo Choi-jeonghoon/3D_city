@@ -7,14 +7,12 @@ import { cities } from "../utils/cities";
 import { Bounds } from "@react-three/drei";
 import { FocusWeatherComponent } from "./FocusWeatherComponent";
 
-const KEY = import.meta.env.VITE_WEATHER_API_KEY;
-
 export const SceneComponent = () => {
   const [content, setContent] = useState([]);
 
   const getCurrentWeather = async () => {
     try {
-      const promises = cities.map((city) => getCityWeather(city, KEY));
+      const promises = cities.map((city) => getCityWeather(city));
       const weatherDataArray = await Promise.all(promises);
       setContent(weatherDataArray);
     } catch (error) {

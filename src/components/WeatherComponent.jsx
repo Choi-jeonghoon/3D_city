@@ -3,6 +3,7 @@ import React, { useMemo, useRef, useState } from "react";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { motion } from "framer-motion-3d";
 import { CityNameComponent } from "./CityNameComponent";
+import { useNavigate } from "react-router-dom";
 
 export const WeatherComponent = (props) => {
   const { position, weather, rotation, cityName } = props;
@@ -10,6 +11,7 @@ export const WeatherComponent = (props) => {
   //console.log("날씨 모델링", weatherGlb.nodes);
   const ref = useRef(null);
   const [isHover, setHover] = useState(false);
+  const navigate = useNavigate();
 
   //프레임마다 계속 오른쪽으로 돌리기
   useFrame((_, delta) => {
@@ -23,12 +25,21 @@ export const WeatherComponent = (props) => {
     return clonedModel.clone();
   }, [weather]);
 
+  const formatCityName = (name) => {
+    return name.replace(/\s/g, "").toLowerCase();
+  };
+
+  const onClick = () => {
+    navigate(`/${formatCityName(cityName)}`);
+  };
+
   return (
     <group position={position} rotation={rotation}>
       {/* framer-motion-3d 활용한 호버 속성 */}
       <motion.mesh
         onPointerEnter={() => setHover(true)}
         onPointerOut={() => setHover(false)}
+        onClick={onClick}
         whileHover={{ scale: 1.5, transition: { duration: 0.5 } }}
         ref={ref}
       >

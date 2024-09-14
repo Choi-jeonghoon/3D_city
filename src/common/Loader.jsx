@@ -6,11 +6,10 @@ function CustomLoader() {
   return active ? (
     <Html center>
       <div style={{ color: "white", fontSize: "24px" }}>
-        {progress.toFixed(1)}% loaded
+        {progress.toFixed(1)}% loading...
       </div>
     </Html>
   ) : null;
 }
 
 export default CustomLoader;
-

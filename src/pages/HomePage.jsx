@@ -3,9 +3,12 @@ import React, { Suspense } from "react";
 import { SceneComponent } from "../components/SceneComponent";
 import CustomLoader from "../common/Loader";
 import { OrbitControls } from "@react-three/drei";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+import AnimatedOutlet from "../common/AnimatedOutlet";
 
 function HomePage() {
+  const location = useLocation();
   return (
     <>
       <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
@@ -24,7 +27,10 @@ function HomePage() {
           minDistance={2} // 카메라가 이동할 수 있는 최소 거리
         />
       </Canvas>
-      <Outlet />
+
+      <AnimatePresence>
+        <AnimatedOutlet key={location.pathname} />
+      </AnimatePresence>
     </>
   );
 }
