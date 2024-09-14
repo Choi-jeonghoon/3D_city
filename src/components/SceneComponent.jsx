@@ -4,6 +4,8 @@ import { EarthComponent } from "./EarthComponent";
 import { WeatherComponent } from "./WeatherComponent";
 import { getCityWeather } from "../utils/weatherApi";
 import { cities } from "../utils/cities";
+import { Bounds } from "@react-three/drei";
+import { FocusWeatherComponent } from "./FocusWeatherComponent";
 
 const KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
@@ -32,21 +34,26 @@ export const SceneComponent = () => {
     <>
       <LightComponent />
       <EarthComponent />
-      {content.map((data, index) => {
-        const angle = (index / (content.length - 1)) * Math.PI;
-        const radius = 2;
-        const x = radius * Math.cos(angle);
-        const y = radius * Math.sin(angle);
-        return (
-          <WeatherComponent
-            key={index}
-            position={[x, y - 1.5, 0]}
-            rotation-y={index + 1}
-            cityName={data.city}
-            weather={data.weatherData?.weather[0]?.main?.toLowerCase()}
-          />
-        );
-      })}
+      {/* 반응형을 위한 observe 설정 */}
+      <Bounds fit clip observe margin={1}>
+        <FocusWeatherComponent>
+          {content.map((data, index) => {
+            const angle = (index / (content.length - 1)) * Math.PI;
+            const radius = 2;
+            const x = radius * Math.cos(angle);
+            const y = radius * Math.sin(angle);
+            return (
+              <WeatherComponent
+                key={index}
+                position={[x, y - 1.5, 0]}
+                rotation-y={index + 1}
+                cityName={data.city}
+                weather={data.weatherData?.weather[0]?.main?.toLowerCase()}
+              />
+            );
+          })}
+        </FocusWeatherComponent>
+      </Bounds>
     </>
   );
 };
