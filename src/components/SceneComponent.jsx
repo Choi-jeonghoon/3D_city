@@ -25,7 +25,7 @@ export const SceneComponent = () => {
   }, []);
 
   useEffect(() => {
-    console.log("도시정보:", content);
+    //console.log("도시정보:", content);
   }, [content]);
 
   return (
@@ -42,6 +42,7 @@ export const SceneComponent = () => {
             key={index}
             position={[x, y - 1.5, 0]}
             rotation-y={index + 1}
+            cityName={data.city}
             weather={data.weatherData?.weather[0]?.main?.toLowerCase()}
           />
         );
