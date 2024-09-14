@@ -34,7 +34,7 @@ export const WeatherComponent = (props) => {
       >
         <primitive object={weatherModel} />
       </motion.mesh>
-      {isHover && <CityNameComponent name={cityName} />}
+      <CityNameComponent name={cityName} />
     </group>
 
     // <mesh ref={ref} rotation-y={rotationY} position={position}>

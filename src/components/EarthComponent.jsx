@@ -27,7 +27,7 @@ export const EarthComponent = () => {
         <primitive object={earthGlb.scene} />
       </mesh>
       {ishover && (
-        <Html center>
+        <Html center style={{ pointerEvents: "none" }}>
           <span className="icon">
             <img src="/icons/icon.png" alt="icon" />
           </span>
