@@ -1,6 +1,6 @@
 import React from "react";
 import HomePage from "../pages/HomePage";
-import SeoulPage from "../pages/SeoulPage";
+import CityPage from "../pages/CityPage";
 import { getCityWeather } from "../utils/weatherApi";
 
 export const routerInfo = [
@@ -10,10 +10,12 @@ export const routerInfo = [
     errElement: <div className="layout-detail">Error</div>,
     children: [
       {
-        path: "seoul",
-        element: <SeoulPage />,
-        loader: async () => {
-          return getCityWeather("Seoul");
+        path: ":city", // 동적 경로 설정
+        element: <CityPage />,
+        loader: async ({ params }) => {
+          // URL에서 city 파라미터 추출하여 날씨 데이터 로드
+          const city = params.city;
+          return getCityWeather(city);
         },
       },
     ],
